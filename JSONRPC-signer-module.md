@@ -278,16 +278,16 @@ Response
 ### signer_subscribePending
 
 
-Starts a subscription for transactions in the confirmation queue.
-Each event contains all transactions currently in the queue.
+    Starts a subscription for transactions in the confirmation queue.
+    Each event contains all transactions currently in the queue.
 
-An example notification received by subscribing to this event:
-```
-{"jsonrpc":"2.0","method":"signer_pending","params":{"subscription":"0x416d77337e24399d","result":[]}}
-```
+    An example notification received by subscribing to this event:
+    ```
+    {"jsonrpc":"2.0","method":"signer_pending","params":{"subscription":"0x416d77337e24399d","result":[]}}
+    ```
 
-You can unsubscribe using `signer_unsubscribePending` RPC method. Subscriptions are also tied to a transport
-connection, disconnecting causes all subscriptions to be canceled.
+    You can unsubscribe using `signer_unsubscribePending` RPC method. Subscriptions are also tied to a transport
+    connection, disconnecting causes all subscriptions to be canceled.
     
 
 #### Parameters
@@ -302,7 +302,8 @@ None
 
 Request
 ```bash
-curl --data '{"method":"signer_subscribePending","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+wscat -c localhost:8546
+>{"method":"signer_subscribePending","params":[],"id":1,"jsonrpc":"2.0"}
 ```
 
 Response
@@ -336,7 +337,8 @@ params: ["0x416d77337e24399d"]
 
 Request
 ```bash
-curl --data '{"method":"signer_unsubscribePending","params":["0x416d77337e24399d"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+wscat -c localhost:8546
+>{"method":"signer_unsubscribePending","params":["0x416d77337e24399d"],"id":1,"jsonrpc":"2.0"}
 ```
 
 Response
