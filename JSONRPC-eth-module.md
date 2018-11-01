@@ -27,6 +27,7 @@ The following options are possible for the `defaultBlock` parameter:
 - [eth_accounts](#eth_accounts)
 - [eth_blockNumber](#eth_blocknumber)
 - [eth_call](#eth_call)
+- [eth_chainId](#eth_chainid)
 - [eth_coinbase](#eth_coinbase)
 - [eth_estimateGas](#eth_estimategas)
 - [eth_gasPrice](#eth_gasprice)
@@ -167,6 +168,36 @@ Response
   "id": 1,
   "jsonrpc": "2.0",
   "result": "0x"
+}
+```
+
+***
+
+### eth_chainId
+
+Returns the EIP155 chain ID used for transaction signing at the current best block. Null is returned if not available.
+
+#### Parameters
+
+None
+
+#### Returns
+
+- `Quantity` - EIP155 Chain ID, or `null` if not available.
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"eth_chainId","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": "0x1"
 }
 ```
 
@@ -326,7 +357,7 @@ params: [
     - `number`: `Quantity` - The block number. `null` when its pending block
     - `hash`: `Hash` - 32 Bytes - hash of the block. `null` when its pending block
     - `parentHash`: `Hash` - 32 Bytes - hash of the parent block
-    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block
+    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block. Missing in case of PoA.
     - `sha3Uncles`: `Data` - 32 Bytes - SHA3 of the uncles data in the block
     - `logsBloom`: `Data` - 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block
     - `transactionsRoot`: `Data` - 32 Bytes - the root of the transaction trie of the block
@@ -410,7 +441,7 @@ params: [
     - `number`: `Quantity` - The block number. `null` when its pending block
     - `hash`: `Hash` - 32 Bytes - hash of the block. `null` when its pending block
     - `parentHash`: `Hash` - 32 Bytes - hash of the parent block
-    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block
+    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block. Missing in case of PoA.
     - `sha3Uncles`: `Data` - 32 Bytes - SHA3 of the uncles data in the block
     - `logsBloom`: `Data` - 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block
     - `transactionsRoot`: `Data` - 32 Bytes - the root of the transaction trie of the block
@@ -753,7 +784,7 @@ params: [
     - `gas`: `Quantity` - gas provided by the sender.
     - `input`: `Data` - the data send along with the transaction.
     - `v`: `Quantity` - the standardised V field of the signature.
-    - `standard_v`: `Quantity` - the standardised V field of the signature (0 or 1).
+    - `standardV`: `Quantity` - the standardised V field of the signature (0 or 1).
     - `r`: `Quantity` - the R field of the signature.
     - `raw`: `Data` - raw transaction data
     - `publicKey`: `Hash` - public key of the signer.
@@ -813,7 +844,7 @@ params: [
     - `number`: `Quantity` - The block number. `null` when its pending block
     - `hash`: `Hash` - 32 Bytes - hash of the block. `null` when its pending block
     - `parentHash`: `Hash` - 32 Bytes - hash of the parent block
-    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block
+    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block. Missing in case of PoA.
     - `sha3Uncles`: `Data` - 32 Bytes - SHA3 of the uncles data in the block
     - `logsBloom`: `Data` - 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block
     - `transactionsRoot`: `Data` - 32 Bytes - the root of the transaction trie of the block
@@ -902,7 +933,7 @@ params: ["0xb903239f8543d04b5dc1ba6579132b143087c68db1b2168786408fcbce568238"]
     - `gas`: `Quantity` - gas provided by the sender.
     - `input`: `Data` - the data send along with the transaction.
     - `v`: `Quantity` - the standardised V field of the signature.
-    - `standard_v`: `Quantity` - the standardised V field of the signature (0 or 1).
+    - `standardV`: `Quantity` - the standardised V field of the signature (0 or 1).
     - `r`: `Quantity` - the R field of the signature.
     - `raw`: `Data` - raw transaction data
     - `publicKey`: `Hash` - public key of the signer.
@@ -1062,7 +1093,7 @@ params: [
     - `number`: `Quantity` - The block number. `null` when its pending block
     - `hash`: `Hash` - 32 Bytes - hash of the block. `null` when its pending block
     - `parentHash`: `Hash` - 32 Bytes - hash of the parent block
-    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block
+    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block. Missing in case of PoA.
     - `sha3Uncles`: `Data` - 32 Bytes - SHA3 of the uncles data in the block
     - `logsBloom`: `Data` - 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block
     - `transactionsRoot`: `Data` - 32 Bytes - the root of the transaction trie of the block
@@ -1148,7 +1179,7 @@ params: [
     - `number`: `Quantity` - The block number. `null` when its pending block
     - `hash`: `Hash` - 32 Bytes - hash of the block. `null` when its pending block
     - `parentHash`: `Hash` - 32 Bytes - hash of the parent block
-    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block
+    - `nonce`: `Data` - 8 Bytes - hash of the generated proof-of-work. `null` when its pending block. Missing in case of PoA.
     - `sha3Uncles`: `Data` - 32 Bytes - SHA3 of the uncles data in the block
     - `logsBloom`: `Data` - 256 Bytes - the bloom filter for the logs of the block. `null` when its pending block
     - `transactionsRoot`: `Data` - 32 Bytes - the root of the transaction trie of the block

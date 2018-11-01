@@ -4,9 +4,9 @@ title: The `secretstore` Module
 
 Parity has separate RPC API set - secretstore, which:
 
-  - is available in default Parity client (i.e. does not requires Parity to be built with `--features secretstore`);
-  - is considered unsafe and must be enabled separately (by passing secretstore, all or safe as an `--jsonrpc-apis` argument value);
-  - contains dangerous methods and must be enabled with caution.
+- is available in default Parity client (i.e. does not requires Parity to be built with `--features secretstore`);
+- is considered unsafe and must be enabled separately (by passing secretstore, all or safe as an `--jsonrpc-apis` argument value);
+- contains dangerous methods and must be enabled with caution.
 
 ## JSON-RPC methods
 
@@ -25,21 +25,17 @@ This method can be used to decrypt document, encrypted by `secretstore_encrypt` 
 
 #### Parameters
 
-0. `Array` - 
-          - 20 Bytes - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
-          - password for the passed account;
-          - data returned by [document key retrieval session](Secret-Store#document-key-retrieval-session);
-          - the encrypted document data (result of `secretstore_encrypt` call);
-          
+0. `Address` - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `String` - password for the passed account;
+0. `Data` - Data returned by [document key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `Data` - the encrypted document data (result of `secretstore_encrypt` call);
 
 ```js
 params: [
-  [
-    "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
-    "",
-    "0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4",
-    "0xd164666d070be4d527285a40e84e8d17bf3e88fc"
-  ]
+  "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
+  "",
+  "0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4",
+  "0xd164666d070be4d527285a40e84e8d17bf3e88fc"
 ]
 ```
 
@@ -51,7 +47,7 @@ params: [
 
 Request
 ```bash
-curl --data '{"method":"secretstore_decrypt","params":[["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4","0xd164666d070be4d527285a40e84e8d17bf3e88fc"]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"secretstore_decrypt","params":["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4","0xd164666d070be4d527285a40e84e8d17bf3e88fc"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -71,21 +67,17 @@ This method can be used after running document key retrieval session or server a
 
 #### Parameters
 
-0. `Array` - 
-          - 20 Bytes - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
-          - password for the passed account;
-          - data returned by [document key retrieval session](Secret-Store#document-key-retrieval-session);
-          - hex-encoded document data;
-          
+0. `Address` - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `String` - password for the passed account;
+0. `Data` - Data returned by [document key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `Data` - hex-encoded document data;
 
 ```js
 params: [
-  [
-    "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
-    "",
-    "0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4",
-    "0xdeadbeef"
-  ]
+  "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
+  "",
+  "0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4",
+  "0xdeadbeef"
 ]
 ```
 
@@ -97,7 +89,7 @@ params: [
 
 Request
 ```bash
-curl --data '{"method":"secretstore_encrypt","params":[["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4","0xdeadbeef"]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"secretstore_encrypt","params":["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4","0xdeadbeef"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -117,19 +109,15 @@ This method is used to securely generate document key, so that it remains unknow
 
 #### Parameters
 
-0. `Array` - 
-          - 20 Bytes - he address to be used for signature generation (requester);
-          - password for the passed account;
-          - Server key generated using server [key generation session](Secret-Store#server-key-generation-session);
-        
+0. `Address` - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `String` - password for the passed account;
+0. `Data` - Data returned by [document key retrieval session](Secret-Store#document-key-retrieval-session);
 
 ```js
 params: [
-  [
-    "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
-    "",
-    "0x2eabc29df5b62c75011bf1016237212b6305f8bae0f979b7b92250cfea06c20fe1689fc6d98964be64532598e3db7fc5712ad24b95e161f95bcfe1c6f859da3a"
-  ]
+  "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
+  "",
+  "0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4"
 ]
 ```
 
@@ -144,7 +132,7 @@ params: [
 
 Request
 ```bash
-curl --data '{"method":"secretstore_generateDocumentKey","params":[["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x2eabc29df5b62c75011bf1016237212b6305f8bae0f979b7b92250cfea06c20fe1689fc6d98964be64532598e3db7fc5712ad24b95e161f95bcfe1c6f859da3a"]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"secretstore_generateDocumentKey","params":["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x049b05477a02b3197d568e1fa6fbfa4152316eea499d4f6c1c72f215246f87cf910bbd0951067466e8eb8d05437686ab6cf15caaffc9388a5b6c1cfc65eae556c949bae498a36c3bd630b47d852593f9ff9e0cac62e611afc0ae620ccf74b7e3925f2becb64a3afa7d74c33b8761d69af052dd8363d9dd28516ab80521399774737ec98d04bd118325fc242098e71fd9641430b7bde42f6845b86d61fa5fc6b77920c8eca923da955cd136cdc79467bba4"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -207,17 +195,25 @@ This method can be used to decrypt document, encrypted by `[secretstore_encrypt]
 
 #### Parameters
 
-0. `Array` - 
-          - 20 Bytes - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
-          - password for the passed account;
-          - the value of `decrypted_secret` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
-          - the value of `common_point` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
-          - the value of `decrypt_shadows` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
-          - the encrypted document data (result of `secretstore_encrypt` call);
-        
+0. `Address` - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `String` - password for the passed account;
+0. `Data` - the value of `decrypted_secret` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
+0. `Data` - the value of `common_point` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
+0. `Array` - the value of `decrypt_shadows` field from [document key shadow retrieval](Secret-Store#document-key-shadow-retrieval-session) session result;
+0. `Data` - the encrypted document data (result of `secretstore_encrypt` call);
 
 ```js
-params: ["[\n          \"0xfeacd0d28fd158ba2d3adb6d69d20c723214edc9\",\n          \"bobpwd\",\n          \"0x9b5aa977f537d24c5f523f67a95329bdd147e6be1b0d913c1506d2a0a210ab24ce380787d9b81f88fd05dfcfc083c8df56569a763440a1159a41db144a0d3d6b\",\n          \"0xf0e62b05b68b1847ad948572a1b04a91dee7d7dca2f675fd00c136eb706d4916fb1fcdd446ab9df236eba3ab8d6184b7b3f4e8584259b5e2dc6dff8bcb07c632\",\n          [\n            \"0x0478055ba0c544032560c4db1fbe02cd848217a9d9e476dc3a4f7f2c6dbe9535f64b947d813a42e77a3d21ccbd46a50f10c6a556daa897ed4e80d9938f696b2efde9558da7a1e0c2290fc97d0594a134a2a2fc316250808fb43e42bcfb3586e74a97dde2c6403f25b0952e15e7b2a4d11dab01f1d77d0e39fc98a83bf2971e190bed38108dfe9f6be7c29f9fe1c868df7c\",\n            \"0x04733d896fc8279b3c8209e10dd12f7c052ac9d8f171dff174e2183f68720294b162e879166ae744883c74cbe56528c2908a4d17c6f245d9158491351cc1f11ecf79f8e9b828963e07c839eaf923c2db29d2c85d282326f83e9ccac334e3abf3e99b7e41811940426f97995494e2bae53f0ddd38ccd6dba26847723a77629f703c564c14da4880521e192976e09e7499a4\"\n          ],\n          \"0x237ac394e3f6cbe7395fc7076a3b58036a0e185a519e41b35a87ba73679cc1bb\"\n        ]"]
+params: [
+  "0xfeacd0d28fd158ba2d3adb6d69d20c723214edc9",
+  "bobpwd",
+  "0x9b5aa977f537d24c5f523f67a95329bdd147e6be1b0d913c1506d2a0a210ab24ce380787d9b81f88fd05dfcfc083c8df56569a763440a1159a41db144a0d3d6b",
+  "0xf0e62b05b68b1847ad948572a1b04a91dee7d7dca2f675fd00c136eb706d4916fb1fcdd446ab9df236eba3ab8d6184b7b3f4e8584259b5e2dc6dff8bcb07c632",
+  [
+    "0x0478055ba0c544032560c4db1fbe02cd848217a9d9e476dc3a4f7f2c6dbe9535f64b947d813a42e77a3d21ccbd46a50f10c6a556daa897ed4e80d9938f696b2efde9558da7a1e0c2290fc97d0594a134a2a2fc316250808fb43e42bcfb3586e74a97dde2c6403f25b0952e15e7b2a4d11dab01f1d77d0e39fc98a83bf2971e190bed38108dfe9f6be7c29f9fe1c868df7c",
+    "0x04733d896fc8279b3c8209e10dd12f7c052ac9d8f171dff174e2183f68720294b162e879166ae744883c74cbe56528c2908a4d17c6f245d9158491351cc1f11ecf79f8e9b828963e07c839eaf923c2db29d2c85d282326f83e9ccac334e3abf3e99b7e41811940426f97995494e2bae53f0ddd38ccd6dba26847723a77629f703c564c14da4880521e192976e09e7499a4"
+  ],
+  "0x237ac394e3f6cbe7395fc7076a3b58036a0e185a519e41b35a87ba73679cc1bb"
+]
 ```
 
 #### Returns
@@ -228,7 +224,7 @@ params: ["[\n          \"0xfeacd0d28fd158ba2d3adb6d69d20c723214edc9\",\n        
 
 Request
 ```bash
-curl --data '{"method":"secretstore_shadowDecrypt","params":["[\n          \"0xfeacd0d28fd158ba2d3adb6d69d20c723214edc9\",\n          \"bobpwd\",\n          \"0x9b5aa977f537d24c5f523f67a95329bdd147e6be1b0d913c1506d2a0a210ab24ce380787d9b81f88fd05dfcfc083c8df56569a763440a1159a41db144a0d3d6b\",\n          \"0xf0e62b05b68b1847ad948572a1b04a91dee7d7dca2f675fd00c136eb706d4916fb1fcdd446ab9df236eba3ab8d6184b7b3f4e8584259b5e2dc6dff8bcb07c632\",\n          [\n            \"0x0478055ba0c544032560c4db1fbe02cd848217a9d9e476dc3a4f7f2c6dbe9535f64b947d813a42e77a3d21ccbd46a50f10c6a556daa897ed4e80d9938f696b2efde9558da7a1e0c2290fc97d0594a134a2a2fc316250808fb43e42bcfb3586e74a97dde2c6403f25b0952e15e7b2a4d11dab01f1d77d0e39fc98a83bf2971e190bed38108dfe9f6be7c29f9fe1c868df7c\",\n            \"0x04733d896fc8279b3c8209e10dd12f7c052ac9d8f171dff174e2183f68720294b162e879166ae744883c74cbe56528c2908a4d17c6f245d9158491351cc1f11ecf79f8e9b828963e07c839eaf923c2db29d2c85d282326f83e9ccac334e3abf3e99b7e41811940426f97995494e2bae53f0ddd38ccd6dba26847723a77629f703c564c14da4880521e192976e09e7499a4\"\n          ],\n          \"0x237ac394e3f6cbe7395fc7076a3b58036a0e185a519e41b35a87ba73679cc1bb\"\n        ]"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"secretstore_shadowDecrypt","params":["0xfeacd0d28fd158ba2d3adb6d69d20c723214edc9","bobpwd","0x9b5aa977f537d24c5f523f67a95329bdd147e6be1b0d913c1506d2a0a210ab24ce380787d9b81f88fd05dfcfc083c8df56569a763440a1159a41db144a0d3d6b","0xf0e62b05b68b1847ad948572a1b04a91dee7d7dca2f675fd00c136eb706d4916fb1fcdd446ab9df236eba3ab8d6184b7b3f4e8584259b5e2dc6dff8bcb07c632",["0x0478055ba0c544032560c4db1fbe02cd848217a9d9e476dc3a4f7f2c6dbe9535f64b947d813a42e77a3d21ccbd46a50f10c6a556daa897ed4e80d9938f696b2efde9558da7a1e0c2290fc97d0594a134a2a2fc316250808fb43e42bcfb3586e74a97dde2c6403f25b0952e15e7b2a4d11dab01f1d77d0e39fc98a83bf2971e190bed38108dfe9f6be7c29f9fe1c868df7c","0x04733d896fc8279b3c8209e10dd12f7c052ac9d8f171dff174e2183f68720294b162e879166ae744883c74cbe56528c2908a4d17c6f245d9158491351cc1f11ecf79f8e9b828963e07c839eaf923c2db29d2c85d282326f83e9ccac334e3abf3e99b7e41811940426f97995494e2bae53f0ddd38ccd6dba26847723a77629f703c564c14da4880521e192976e09e7499a4"],"0x237ac394e3f6cbe7395fc7076a3b58036a0e185a519e41b35a87ba73679cc1bb"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -249,19 +245,15 @@ This method is used to compute recoverrable ECDSA signatures, used in Secret Sto
 
 #### Parameters
 
-0. `Array` - 
-          - 20 bytes - the address to be used for signature generation (requester);
-          - password for the passed account;
-          - 256-bit hash to be signed (server key id or nodes set hash).
-        
+0. `Address` - address of account, which was used as requester in document [key retrieval session](Secret-Store#document-key-retrieval-session);
+0. `String` - password for the passed account;
+0. `Hash` - 256-bit hash to be signed (server key id or nodes set hash).
 
 ```js
 params: [
-  [
-    "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
-    "",
-    "0x0000000000000000000000000000000000000000000000000000000000000001"
-  ]
+  "0x00a329c0648769A73afAc7F9381E08FB43dBEA72",
+  "",
+  "0x0000000000000000000000000000000000000000000000000000000000000001"
 ]
 ```
 
@@ -273,7 +265,7 @@ params: [
 
 Request
 ```bash
-curl --data '{"method":"secretstore_signRawHash","params":[["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x0000000000000000000000000000000000000000000000000000000000000001"]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"secretstore_signRawHash","params":["0x00a329c0648769A73afAc7F9381E08FB43dBEA72","","0x0000000000000000000000000000000000000000000000000000000000000001"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response

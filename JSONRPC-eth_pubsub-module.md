@@ -57,8 +57,8 @@ connection, disconnecting causes all subscriptions to be canceled.
 
 0. `String` - Subscription type: one of `newHeads`, `logs`
 0. `Object` - 
-  Subscription type-specific parameters. It must be left empty for
-  `newHeads` and must contain filter object for `logs`.
+Subscription type-specific parameters. It must be left empty for
+`newHeads` and must contain filter object for `logs`.
           
 
 ```js

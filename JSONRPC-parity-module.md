@@ -4,7 +4,9 @@ title: The `parity` Module
 
 ## JSON-RPC methods
 
+- [parity_allTransactionHashes](#parity_alltransactionhashes)
 - [parity_allTransactions](#parity_alltransactions)
+- [parity_call](#parity_call)
 - [parity_cidV0](#parity_cidv0)
 - [parity_composeTransaction](#parity_composetransaction)
 - [parity_consensusCapability](#parity_consensuscapability)
@@ -12,6 +14,7 @@ title: The `parity` Module
 - [parity_encryptMessage](#parity_encryptmessage)
 - [parity_futureTransactions](#parity_futuretransactions)
 - [parity_getBlockHeaderByNumber](#parity_getblockheaderbynumber)
+- [parity_getBlockReceipts](#parity_getblockreceipts)
 - [parity_hardwarePinMatrixAck](#parity_hardwarepinmatrixack)
 - [parity_listOpenedVaults](#parity_listopenedvaults)
 - [parity_listStorageKeys](#parity_liststoragekeys)
@@ -20,6 +23,7 @@ title: The `parity` Module
 - [parity_lockedHardwareAccountsInfo](#parity_lockedhardwareaccountsinfo)
 - [parity_releasesInfo](#parity_releasesinfo)
 - [parity_signMessage](#parity_signmessage)
+- [parity_verifySignature](#parity_verifysignature)
 - [parity_versionInfo](#parity_versioninfo)
 
 #### Account Vaults
@@ -56,7 +60,6 @@ title: The `parity` Module
 
 #### Network Information
 - [parity_chain](#parity_chain)
-- [parity_chainId](#parity_chainid)
 - [parity_chainStatus](#parity_chainstatus)
 - [parity_gasPriceHistogram](#parity_gaspricehistogram)
 - [parity_netChain](#parity_netchain)
@@ -78,6 +81,40 @@ title: The `parity` Module
 - [parity_wsUrl](#parity_wsurl)
 
 ## JSON-RPC API Reference
+
+### parity_allTransactionHashes
+
+Request the list of transactions present in the transaction pool/ transaction queue
+
+#### Parameters
+
+None
+
+#### Returns
+
+- `Array` - List of transaction hash present in the node's transaction pool
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"parity_allTransactionHashes","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": [
+    "0x530683c1197f5b78a93d2ac07d41bd51913ddabd703b332b7024c0a8b45ab1ef",
+    "0x385ad71ae858c3b229c30d4ac690f86396f8fd48b32bdba966306a9c95ab52ad",
+    "0xdabc1f5156b2635f60c67d8cc27e9b07526f9239e9af821e80655766365dfa8d"
+  ]
+}
+```
+
+***
 
 ### parity_allTransactions
 
@@ -147,6 +184,56 @@ Response
       "value": "0x0"
     },
     { ... }, { ... }, ...
+  ]
+}
+```
+
+***
+
+### parity_call
+
+undefined
+
+#### Parameters
+
+0. `Array` - List of transaction's object to be called in sequence
+
+```js
+params: [
+  [
+    {
+      "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+      "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+      "value": "0x186a0"
+    },
+    {
+      "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+      "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+      "value": "0x186a0"
+    }
+  ]
+]
+```
+
+#### Returns
+
+- `Array` - List of the return value of each call.
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"parity_call","params":[[{"from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","to":"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b","value":"0x186a0"},{"from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","to":"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b","value":"0x186a0"}]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": [
+    "0x",
+    "0x"
   ]
 }
 ```
@@ -485,6 +572,71 @@ Response
 
 ***
 
+### parity_getBlockReceipts
+
+Get receipts from all transactions from particular block, more efficient than fetching the receipts one-by-one
+
+#### Parameters
+
+0. `Quantity` or `Tag` - undefined
+
+```js
+params: ["0x8D2B29"]
+```
+
+#### Returns
+
+- `Array` - The list of all the transaction's receipts of the given block
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"parity_getBlockReceipts","params":["0x8D2B29"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "blockHash": "0x64d67cf84d95f8dfa1e1c3b5a5260aaf801ac99529b4ec3ae19bb06ba78c7bd5",
+      "blockNumber": "0x8d2b29",
+      "contractAddress": null,
+      "cumulativeGasUsed": "0x5208",
+      "from": "0x4d6bb4ed029b33cf25d0810b029bd8b1a6bcab7b",
+      "gasUsed": "0x5208",
+      "logs": [],
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "root": null,
+      "status": "0x1",
+      "to": "0xe9c245293dac615c11a5bf26fcec91c3617645e4",
+      "transactionHash": "0x1eba82fb5e8426b520c49a5d8dc6c24157e8f45fb9102aca4a99f5617c1539fc",
+      "transactionIndex": "0x0"
+    },
+    {
+      "blockHash": "0x64d67cf84d95f8dfa1e1c3b5a5260aaf801ac99529b4ec3ae19bb06ba78c7bd5",
+      "blockNumber": "0x8d2b29",
+      "contractAddress": null,
+      "cumulativeGasUsed": "0x3fc28",
+      "from": "0x0caf0d921b2bd24ca04e1f06344e976af223783b",
+      "gasUsed": "0x3aa20",
+      "logs": [],
+      "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "root": null,
+      "status": "0x1",
+      "to": "0xf2bb17cb59746cae43d65eec233925b6584cddef",
+      "transactionHash": "0x70a50d28db69e5c7a8686141f282530d52e7e3c625296dc53eb5684afa727886",
+      "transactionIndex": "0x1"
+    }
+  ]
+}
+```
+
+***
+
 ### parity_hardwarePinMatrixAck
 
 Send a pin to a hardware wallet at a specific path to unlock it
@@ -787,6 +939,42 @@ Response
   "id": 1,
   "jsonrpc": "2.0",
   "result": "0x1d9e33a8cf8bfc089a172bca01da462f9e359c6cb1b0f29398bc884e4d18df4f78588aee4fb5cc067ca62d2abab995e0bba29527be6ac98105b0320020a2efaf00"
+}
+```
+
+***
+
+### parity_verifySignature
+
+Recovers the public key and address that produced the given signature, as well as checks for chain replay protection against the current chain spec
+
+#### Parameters
+
+0. `Boolean` - flag to indicate if this signature was produced with the 'Ethereum Signed Message' prefix, usually signatures gotten from [`eth_signMessage`](JSONRPC-eth-module#eth_signMessage) are prefixed.
+0. `Data` - Hashed message.
+0. `Quantity` - The R field of the signature.
+0. `Quantity` - The S field of the signature.
+0. `Quantity` - The V field of the signature.
+
+#### Returns
+
+- `Object` - Information recovered from the signature
+    - `address`: `Address` - The address recovered from the signature
+    - `publicKey`: `Quantity` - Public key recovered from the signature
+    - `isValidForCurrentChain`: `Boolean` - Flag that reports if this signture was produced for the current chain spec
+
+#### Example
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": {
+    "address": "0xb60e8dd61c5d32be8058bb8eb970870f07233155",
+    "publicKey": "0x3fa8c08c65a83f6b4ea3e04e1cc70cbe3cd391499e3e05ab7dedf28aff9afc538200ff93e3f2b2cb5029f03c7ebee820d63a4c5a9541c83acebe293f54cacf0e",
+    "isValidForCurrentChain": false
+  }
 }
 ```
 
@@ -1406,7 +1594,7 @@ params: [{
   "data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
   "condition": {
     "block": 354221,
-    "time": "2018-10-29T10:11:03.851Z"
+    "time": "2018-11-01T15:05:41.836Z"
   }
 }]
 ```
@@ -1419,7 +1607,7 @@ params: [{
 
 Request
 ```bash
-curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-10-29T10:11:03.851Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-11-01T15:05:41.836Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -1704,36 +1892,6 @@ Response
   "id": 1,
   "jsonrpc": "2.0",
   "result": "homestead"
-}
-```
-
-***
-
-### parity_chainId
-
-Returns the EIP155 chain ID used for transaction signing at the current best block. Null is returned if not available.
-
-#### Parameters
-
-None
-
-#### Returns
-
-- `Quantity` - EIP155 Chain ID, or `null` if not available.
-
-#### Example
-
-Request
-```bash
-curl --data '{"method":"parity_chainId","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
-```
-
-Response
-```js
-{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "result": "0x1"
 }
 ```
 

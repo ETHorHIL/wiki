@@ -178,7 +178,7 @@ Calculates an Ethereum specific signature with: `sign(keccak256("Ethereum Signe
 
 #### Parameters
 
-0. `Data` - The transaction object
+0. `Data` - The data to sign
 0. `Address` - 20 Bytes - The address of the account to sign with
 0. `String` - Passphrase to unlock the `from` account.
 
