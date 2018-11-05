@@ -123,21 +123,95 @@ Performs multiple call traces on top of the same block. i.e. transaction `n` wil
 
 #### Parameters
 
-0. `Array` - List of trace calls
+0. `Array` - List of trace calls with the type of trace, one or more of: `"vmTrace"`, `"trace"`, `"stateDiff"`.
 0. `Quantity` or `Tag` - (optional) integer block number, or the string `'latest'`, `'earliest'` or `'pending'`, see the [default block parameter](#the-default-block-parameter).
+
+```js
+params: [
+  [
+    [
+      {
+        "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+        "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+        "value": "0x186a0"
+      },
+      ["trace"]
+    ],
+    [
+      {
+        "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+        "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+        "value": "0x186a0"
+      },
+      ["trace"]
+    ]
+  ],
+  "latest"
+]
+```
 
 #### Returns
 
-- `Array` - 
+- `Array` - Array of the given transactions' traces
 
 #### Example
+
+Request
+```bash
+curl --data '{"method":"trace_callMany","params":[[[{"from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","to":"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b","value":"0x186a0"},["trace"]],[{"from":"0x407d73d8a49eeb85d32cf465507dd71d507100c1","to":"0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b","value":"0x186a0"},["trace"]]],"latest"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
 
 Response
 ```js
 {
   "id": 1,
   "jsonrpc": "2.0",
-  "result": ""
+  "result": [
+    {
+      "output": "0x",
+      "stateDiff": null,
+      "trace": [{
+        "action": {
+          "callType": "call",
+          "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+          "gas": "0x1dcd12f8",
+          "input": "0x",
+          "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+          "value": "0x186a0"
+        },
+        "result": {
+          "gasUsed": "0x0",
+          "output": "0x"
+        },
+        "subtraces": 0,
+        "traceAddress": [],
+        "type": "call"
+      }],
+      "vmTrace": null
+    },
+    {
+      "output": "0x",
+      "stateDiff": null,
+      "trace": [{
+        "action": {
+          "callType": "call",
+          "from": "0x407d73d8a49eeb85d32cf465507dd71d507100c1",
+          "gas": "0x1dcd12f8",
+          "input": "0x",
+          "to": "0xa94f5374fce5edbc8e2a8697c15331677e6ebf0b",
+          "value": "0x186a0"
+        },
+        "result": {
+          "gasUsed": "0x0",
+          "output": "0x"
+        },
+        "subtraces": 0,
+        "traceAddress": [],
+        "type": "call"
+      }],
+      "vmTrace": null
+    }
+  ]
 }
 ```
 
