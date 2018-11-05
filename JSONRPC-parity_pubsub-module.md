@@ -25,7 +25,7 @@ An example notification received by subscribing to `eth_getBalance` RPC method:
 
 You can unsubscribe using `parity_unsubscribe` RPC method. Subscriptions are also tied to a transport
 connection, disconnecting causes all subscriptions to be canceled.
-    
+
 
 #### Parameters
 

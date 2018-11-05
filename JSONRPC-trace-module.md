@@ -52,7 +52,9 @@ then it should look something like:
 
 #### Ad-hoc Tracing
 - [trace_call](#trace_call)
+- [trace_callMany](#trace_callmany)
 - [trace_rawTransaction](#trace_rawtransaction)
+- [trace_replayBlockTransactions](#trace_replayblocktransactions)
 - [trace_replayTransaction](#trace_replaytransaction)
 
 #### Transaction-Trace Filtering
@@ -115,6 +117,32 @@ Response
 
 ***
 
+### trace_callMany
+
+Performs multiple call traces on top of the same block. i.e. transaction `n` will be executed on top of a pending block with all `n-1` transactions applied (traced) first. Allows to trace dependent transactions.
+
+#### Parameters
+
+0. `Array` - List of trace calls
+0. `Quantity` or `Tag` - (optional) integer block number, or the string `'latest'`, `'earliest'` or `'pending'`, see the [default block parameter](#the-default-block-parameter).
+
+#### Returns
+
+- `Array` - 
+
+#### Example
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": ""
+}
+```
+
+***
+
 ### trace_rawTransaction
 
 Traces a call to `eth_sendRawTransaction` without making the call, returning the traces
@@ -162,6 +190,61 @@ Response
     }],
     "vmTrace": null
   }
+}
+```
+
+***
+
+### trace_replayBlockTransactions
+
+Replays all transactions in a block returning the requested traces for each transaction.
+
+#### Parameters
+
+0. `Quantity` or `Tag` - Integer of a block number, or the string `'earliest'`, `'latest'` or `'pending'`.
+0. `Array` - Type of trace, one or more of: `"vmTrace"`, `"trace"`, `"stateDiff"`.
+
+```js
+params: [
+  "0x2ed119",
+  ["trace"]
+]
+```
+
+#### Returns
+
+- `Array` - Block transactions traces.
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"trace_replayBlockTransactions","params":["0x2ed119",["trace"]],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": [
+    {
+      "output": "0x",
+      "stateDiff": null,
+      "trace": [{
+        "action": { ... },
+        "result": {
+          "gasUsed": "0x0",
+          "output": "0x"
+        },
+        "subtraces": 0,
+        "traceAddress": [],
+        "type": "call"
+      }],
+      "vmTrace": null
+    },
+    { ... }
+  ]
 }
 ```
 

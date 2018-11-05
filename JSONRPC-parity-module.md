@@ -21,8 +21,10 @@ title: The `parity` Module
 - [parity_listVaults](#parity_listvaults)
 - [parity_localTransactions](#parity_localtransactions)
 - [parity_lockedHardwareAccountsInfo](#parity_lockedhardwareaccountsinfo)
+- [parity_nodeStatus](#parity_nodestatus)
 - [parity_releasesInfo](#parity_releasesinfo)
 - [parity_signMessage](#parity_signmessage)
+- [parity_submitWorkDetail](#parity_submitworkdetail)
 - [parity_verifySignature](#parity_verifysignature)
 - [parity_versionInfo](#parity_versioninfo)
 
@@ -437,9 +439,9 @@ Response
 
 ### parity_futureTransactions
 
-**This method is deprecated in favor of [parity_allTransactions](#parity_allTransactions)** 
+**This method is deprecated in favor of [parity_allTransactions](#parity_allTransactions)**
 
- Returns all future transactions from transaction queue.
+Returns all future transactions from transaction queue.
 
 #### Parameters
 
@@ -578,7 +580,7 @@ Get receipts from all transactions from particular block, more efficient than fe
 
 #### Parameters
 
-0. `Quantity` or `Tag` - undefined
+0. `Quantity` or `Tag` - integer of a block number, or the string `'earliest'`, `'latest'` or `'pending'`, as in the default block parameter.
 
 ```js
 params: ["0x8D2B29"]
@@ -871,6 +873,36 @@ Response
 
 ***
 
+### parity_nodeStatus
+
+Determines the health of the node. Returns an error in case the node is not connected to any peers (except for dev chain) or is still syncing.
+
+#### Parameters
+
+None
+
+#### Returns
+
+- [object Object]
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"parity_nodeStatus","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": null
+}
+```
+
+***
+
 ### parity_releasesInfo
 
 returns a ReleasesInfo object describing the current status of releases
@@ -939,6 +971,46 @@ Response
   "id": 1,
   "jsonrpc": "2.0",
   "result": "0x1d9e33a8cf8bfc089a172bca01da462f9e359c6cb1b0f29398bc884e4d18df4f78588aee4fb5cc067ca62d2abab995e0bba29527be6ac98105b0320020a2efaf00"
+}
+```
+
+***
+
+### parity_submitWorkDetail
+
+Used for submitting a proof-of-work solution. Similar to `eth_submitWork` but will return the block hash on success, and return an explicit error message on failure.
+
+#### Parameters
+
+0. `Data` - 8 Bytes - The nonce found (64 bits).
+0. `Data` - 32 Bytes - The header's pow-hash (256 bits)
+0. `Data` - 32 Bytes - The mix digest (256 bits).
+
+```js
+params: [
+  "0x0000000000000001",
+  "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef",
+  "0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"
+]
+```
+
+#### Returns
+
+- `Hash` - Hash of the submitted block if successful
+
+#### Example
+
+Request
+```bash
+curl --data '{"method":"parity_submitWorkDetail","params":["0x0000000000000001","0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef","0xD1FE5700000000000000000000000000D1FE5700000000000000000000000000"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
+
+Response
+```js
+{
+  "id": 1,
+  "jsonrpc": "2.0",
+  "result": "0x07a992176ab51ee50539c1ba287bef937fe49c9a96dafa03954fb6fefa594691"
 }
 ```
 
@@ -1594,7 +1666,7 @@ params: [{
   "data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
   "condition": {
     "block": 354221,
-    "time": "2018-11-01T15:05:41.836Z"
+    "time": "2018-11-05T11:03:01.365Z"
   }
 }]
 ```
@@ -1607,7 +1679,7 @@ params: [{
 
 Request
 ```bash
-curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-11-01T15:05:41.836Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-11-05T11:03:01.365Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
