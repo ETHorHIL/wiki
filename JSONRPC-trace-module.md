@@ -72,12 +72,12 @@ Executes the given call and returns a number of possible traces for it.
 #### Parameters
 
 0. `Object` - Call options, same as `eth_call`.
-    - `from`: `Address` - (optional) 20 Bytes - The address the transaction is send from.
-    - `to`: `Address` - (optional when creating new contract) 20 Bytes - The address the transaction is directed to.
-    - `gas`: `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-    - `gasPrice`: `Quantity` - (optional) Integer of the gas price used for each paid gas.
-    - `value`: `Quantity` - (optional) Integer of the value sent with this transaction.
-    - `data`: `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
+    - `from`:   `Address` - (optional) 20 Bytes - The address the transaction is send from.
+    - `to`:   `Address` - (optional when creating new contract) 20 Bytes - The address the transaction is directed to.
+    - `gas`:   `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+    - `gasPrice`:   `Quantity` - (optional) Integer of the gas price used for each paid gas.
+    - `value`:   `Quantity` - (optional) Integer of the value sent with this transaction.
+    - `data`:   `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
 0. `Array` - Type of trace, one or more of: `"vmTrace"`, `"trace"`, `"stateDiff"`.
 0. `Quantity` or `Tag` - (optional) Integer of a block number, or the string `'earliest'`, `'latest'` or `'pending'`.
 
@@ -442,12 +442,12 @@ Returns traces matching given filter
 #### Parameters
 
 0. `Object` - The filter object
-    - `fromBlock`: `Quantity` or `Tag` - (optional) From this block.
-    - `toBlock`: `Quantity` or `Tag` - (optional) To this block.
-    - `fromAddress`: `Array` - (optional) Sent from these addresses.
-    - `toAddress`: `Address` - (optional) Sent to these addresses.
-    - `after`: `Quantity` - (optional) The offset trace number
-    - `count`: `Quantity` - (optional) Integer number of traces to display in a batch.
+    - `fromBlock`:   `Quantity` or `Tag` - (optional) From this block.
+    - `toBlock`:   `Quantity` or `Tag` - (optional) To this block.
+    - `fromAddress`:   `Array` - (optional) Sent from these addresses.
+    - `toAddress`:   `Address` - (optional) Sent to these addresses.
+    - `after`:   `Quantity` - (optional) The offset trace number
+    - `count`:   `Quantity` - (optional) Integer number of traces to display in a batch.
 
 ```js
 params: [{

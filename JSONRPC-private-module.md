@@ -19,14 +19,14 @@ Make an local call to the private contract (without its state modification).
 
 0. `Quantity` or `Tag` - integer block number, or the string `'latest'`, `'earliest'`, see the [default block parameter](#the-default-block-parameter).
 0. `Object` - The transaction object corresponding to the call
-    - `from`: `Address` - 20 Bytes - The address the transaction is send from.
-    - `to`: `Address` - (optional) 20 Bytes - The address the transaction is directed to.
-    - `gas`: `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-    - `gasPrice`: `Quantity` - (optional) Integer of the gas price used for each paid gas.
-    - `value`: `Quantity` - (optional) Integer of the value sent with this transaction.
-    - `data`: `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
-    - `nonce`: `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
-    - `condition`: `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
+    - `from`:   `Address` - 20 Bytes - The address the transaction is send from.
+    - `to`:   `Address` - (optional) 20 Bytes - The address the transaction is directed to.
+    - `gas`:   `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+    - `gasPrice`:   `Quantity` - (optional) Integer of the gas price used for each paid gas.
+    - `value`:   `Quantity` - (optional) Integer of the value sent with this transaction.
+    - `data`:   `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
+    - `nonce`:   `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+    - `condition`:   `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
 
 ```js
 params: [
@@ -81,9 +81,20 @@ params: [
 
 #### Returns
 
-- `Object` - undefined
-    - `receipt`: `Object` - The transaction’s receipt object.
-    - `transaction`: `Object` - The transaction’s object
+- `Object` - 
+    - `receipt`:   `Object` - The transaction’s receipt object.
+        - `transactionHash`:   `Hash` - 32 Bytes - hash of the transaction.
+        - `contractAddress`:   `Address` - 20 Bytes - address of the public contract.
+        - `status`:   `Quantity` - Status of the request.
+    - `transaction`:   `Object` - The transaction’s object
+        - `from`:   `Address` - 20 Bytes - The address the transaction is send from.
+        - `to`:   `Address` - (optional) 20 Bytes - The address the transaction is directed to.
+        - `gas`:   `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+        - `gasPrice`:   `Quantity` - (optional) Integer of the gas price used for each paid gas.
+        - `value`:   `Quantity` - (optional) Integer of the value sent with this transaction.
+        - `data`:   `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
+        - `nonce`:   `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+        - `condition`:   `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
 
 #### Example
 
@@ -168,9 +179,9 @@ params: ["0xf8840180830e57e094cd96d189596c690ff983e4e14d1838d0305186dc80a4bc64b7
 #### Returns
 
 - `Object` - Response object describing the result of the call
-    - `transactionHash`: `Hash` - 32 Bytes - hash of the transaction.
-    - `contractAddress`: `Address` - 20 Bytes - address of the public contract.
-    - `status`: `Quantity` - Status of the request.
+    - `transactionHash`:   `Hash` - 32 Bytes - hash of the transaction.
+    - `contractAddress`:   `Address` - 20 Bytes - address of the public contract.
+    - `status`:   `Quantity` - Status of the request.
 
 #### Example
 

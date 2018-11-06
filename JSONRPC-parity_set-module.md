@@ -586,10 +586,10 @@ None
 #### Returns
 
 - `Object` - Details or `null` if no new release is available.
-    - `version`: `Object` - Information on the version.
-    - `is_critical`: `Boolean` - Does this release contain critical security updates?
-    - `fork`: `Quantity` - The latest fork that this release can handle.
-    - `binary`: `Data` - (optional) Keccak-256 checksum of the release parity binary, if known.
+    - `version`:   `Object` - Information on the version.
+    - `is_critical`:   `Boolean` - Does this release contain critical security updates?
+    - `fork`:   `Quantity` - The latest fork that this release can handle.
+    - `binary`:   `Data` - (optional) Keccak-256 checksum of the release parity binary, if known.
 
 #### Example
 

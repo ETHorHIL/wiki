@@ -21,7 +21,6 @@ title: The `parity` Module
 - [parity_listVaults](#parity_listvaults)
 - [parity_localTransactions](#parity_localtransactions)
 - [parity_lockedHardwareAccountsInfo](#parity_lockedhardwareaccountsinfo)
-- [parity_nodeStatus](#parity_nodestatus)
 - [parity_releasesInfo](#parity_releasesinfo)
 - [parity_signMessage](#parity_signmessage)
 - [parity_submitWorkDetail](#parity_submitworkdetail)
@@ -129,26 +128,26 @@ None
 #### Returns
 
 - `Array` - Transaction list.
-    - `hash`: `Hash` - 32 Bytes - hash of the transaction.
-    - `nonce`: `Quantity` - The number of transactions made by the sender prior to this one.
-    - `blockHash`: `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
-    - `blockNumber`: `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
-    - `transactionIndex`: `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
-    - `from`: `Address` - 20 Bytes - address of the sender.
-    - `to`: `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
-    - `value`: `Quantity` - Value transferred in Wei.
-    - `gasPrice`: `Quantity` - Gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - Gas provided by the sender.
-    - `input`: `Data` - The data send along with the transaction.
-    - `creates`: `Address` - (optional) Address of a created contract or `null`.
-    - `raw`: `Data` - Raw transaction data.
-    - `publicKey`: `Data` - Public key of the signer.
-    - `chainId`: `Quantity` - The chain id of the transaction, if any.
-    - `standardV`: `Quantity` - The standardized V field of the signature (0 or 1).
-    - `v`: `Quantity` - The V field of the signature.
-    - `r`: `Quantity` - The R field of the signature.
-    - `s`: `Quantity` - The S field of the signature.
-    - `condition`: `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
+    - `hash`:   `Hash` - 32 Bytes - hash of the transaction.
+    - `nonce`:   `Quantity` - The number of transactions made by the sender prior to this one.
+    - `blockHash`:   `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+    - `blockNumber`:   `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
+    - `transactionIndex`:   `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
+    - `from`:   `Address` - 20 Bytes - address of the sender.
+    - `to`:   `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+    - `value`:   `Quantity` - Value transferred in Wei.
+    - `gasPrice`:   `Quantity` - Gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - Gas provided by the sender.
+    - `input`:   `Data` - The data send along with the transaction.
+    - `creates`:   `Address` - (optional) Address of a created contract or `null`.
+    - `raw`:   `Data` - Raw transaction data.
+    - `publicKey`:   `Data` - Public key of the signer.
+    - `chainId`:   `Quantity` - The chain id of the transaction, if any.
+    - `standardV`:   `Quantity` - The standardized V field of the signature (0 or 1).
+    - `v`:   `Quantity` - The V field of the signature.
+    - `r`:   `Quantity` - The R field of the signature.
+    - `s`:   `Quantity` - The S field of the signature.
+    - `condition`:   `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
 
 #### Example
 
@@ -283,14 +282,14 @@ Given partial transaction request produces transaction with all fields filled in
 #### Parameters
 
 0. `Object` - see [`eth_sendTransaction`](JSONRPC-eth-module#eth_sendtransaction).
-    - `from`: `Address` - 20 Bytes - The address the transaction is send from.
-    - `to`: `Address` - (optional) 20 Bytes - The address the transaction is directed to.
-    - `gas`: `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-    - `gasPrice`: `Quantity` - (optional) Integer of the gas price used for each paid gas.
-    - `value`: `Quantity` - (optional) Integer of the value sent with this transaction.
-    - `data`: `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
-    - `nonce`: `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
-    - `condition`: `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
+    - `from`:   `Address` - 20 Bytes - The address the transaction is send from.
+    - `to`:   `Address` - (optional) 20 Bytes - The address the transaction is directed to.
+    - `gas`:   `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+    - `gasPrice`:   `Quantity` - (optional) Integer of the gas price used for each paid gas.
+    - `value`:   `Quantity` - (optional) Integer of the value sent with this transaction.
+    - `data`:   `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
+    - `nonce`:   `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+    - `condition`:   `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
 
 ```js
 params: [{
@@ -450,26 +449,26 @@ None
 #### Returns
 
 - `Array` - Transaction list.
-    - `hash`: `Hash` - 32 Bytes - hash of the transaction.
-    - `nonce`: `Quantity` - The number of transactions made by the sender prior to this one.
-    - `blockHash`: `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
-    - `blockNumber`: `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
-    - `transactionIndex`: `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
-    - `from`: `Address` - 20 Bytes - address of the sender.
-    - `to`: `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
-    - `value`: `Quantity` - Value transferred in Wei.
-    - `gasPrice`: `Quantity` - Gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - Gas provided by the sender.
-    - `input`: `Data` - The data send along with the transaction.
-    - `creates`: `Address` - (optional) Address of a created contract or `null`.
-    - `raw`: `Data` - Raw transaction data.
-    - `publicKey`: `Data` - Public key of the signer.
-    - `chainId`: `Quantity` - The chain id of the transaction, if any.
-    - `standardV`: `Quantity` - The standardized V field of the signature (0 or 1).
-    - `v`: `Quantity` - The V field of the signature.
-    - `r`: `Quantity` - The R field of the signature.
-    - `s`: `Quantity` - The S field of the signature.
-    - `condition`: `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
+    - `hash`:   `Hash` - 32 Bytes - hash of the transaction.
+    - `nonce`:   `Quantity` - The number of transactions made by the sender prior to this one.
+    - `blockHash`:   `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+    - `blockNumber`:   `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
+    - `transactionIndex`:   `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
+    - `from`:   `Address` - 20 Bytes - address of the sender.
+    - `to`:   `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+    - `value`:   `Quantity` - Value transferred in Wei.
+    - `gasPrice`:   `Quantity` - Gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - Gas provided by the sender.
+    - `input`:   `Data` - The data send along with the transaction.
+    - `creates`:   `Address` - (optional) Address of a created contract or `null`.
+    - `raw`:   `Data` - Raw transaction data.
+    - `publicKey`:   `Data` - Public key of the signer.
+    - `chainId`:   `Quantity` - The chain id of the transaction, if any.
+    - `standardV`:   `Quantity` - The standardized V field of the signature (0 or 1).
+    - `v`:   `Quantity` - The V field of the signature.
+    - `r`:   `Quantity` - The R field of the signature.
+    - `s`:   `Quantity` - The S field of the signature.
+    - `condition`:   `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
 
 #### Example
 
@@ -873,36 +872,6 @@ Response
 
 ***
 
-### parity_nodeStatus
-
-Determines the health of the node. Returns an error in case the node is not connected to any peers (except for dev chain) or is still syncing.
-
-#### Parameters
-
-None
-
-#### Returns
-
-- [object Object]
-
-#### Example
-
-Request
-```bash
-curl --data '{"method":"parity_nodeStatus","params":[],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
-```
-
-Response
-```js
-{
-  "id": 1,
-  "jsonrpc": "2.0",
-  "result": null
-}
-```
-
-***
-
 ### parity_releasesInfo
 
 returns a ReleasesInfo object describing the current status of releases
@@ -914,9 +883,9 @@ None
 #### Returns
 
 - `Object` - Information on current releases, `null` if not available.
-    - `fork`: `Quantity` - Block number representing the last known fork for this chain, which may be in the future.
-    - `minor`: `Object` - Information about latest minor update to current version, `null` if this is the latest minor version.
-    - `track`: `Object` - Information about the latest release in this track.
+    - `fork`:   `Quantity` - Block number representing the last known fork for this chain, which may be in the future.
+    - `minor`:   `Object` - Information about latest minor update to current version, `null` if this is the latest minor version.
+    - `track`:   `Object` - Information about the latest release in this track.
 
 #### Example
 
@@ -1028,14 +997,29 @@ Recovers the public key and address that produced the given signature, as well a
 0. `Quantity` - The S field of the signature.
 0. `Quantity` - The V field of the signature.
 
+```js
+params: [
+  true,
+  "0xbc36789e7a1e281436464229828f817d6612f7b477d66591ff96a9e064bcc98a",
+  "0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d",
+  "0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562",
+  "0x1b"
+]
+```
+
 #### Returns
 
 - `Object` - Information recovered from the signature
-    - `address`: `Address` - The address recovered from the signature
-    - `publicKey`: `Quantity` - Public key recovered from the signature
-    - `isValidForCurrentChain`: `Boolean` - Flag that reports if this signture was produced for the current chain spec
+    - `address`:   `Address` - The address recovered from the signature
+    - `publicKey`:   `Quantity` - Public key recovered from the signature
+    - `isValidForCurrentChain`:   `Boolean` - Flag that reports if this signture was produced for the current chain spec
 
 #### Example
+
+Request
+```bash
+curl --data '{"method":"parity_verifySignature","params":[true,"0xbc36789e7a1e281436464229828f817d6612f7b477d66591ff96a9e064bcc98a","0x4355c47d63924e8a72e509b65029052eb6c299d53a04e167c5775fd466751c9d","0x07299936d304c153f6443dfa05f40ff007d72911b6f72307f996231605b91562","0x1b"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+```
 
 Response
 ```js
@@ -1063,9 +1047,9 @@ None
 #### Returns
 
 - `Object` - Information on current version.
-    - `hash`: `Hash` - 20 Byte hash of the current build.
-    - `track`: `String` - Track on which it was released, one of: `"stable"`, `"beta"`, `"nightly"`, `"testing"`, `"null"` (unknown or self-built).
-    - `version`: `Object` - Version number composed of `major`, `minor` and `patch` integers.
+    - `hash`:   `Hash` - 20 Byte hash of the current build.
+    - `track`:   `String` - Track on which it was released, one of: `"stable"`, `"beta"`, `"nightly"`, `"testing"`, `"null"` (unknown or self-built).
+    - `version`:   `Object` - Version number composed of `major`, `minor` and `patch` integers.
 
 #### Example
 
@@ -1362,7 +1346,7 @@ None
 #### Returns
 
 - `Object` - Maps account address to metadata.
-    - `name`: `String` - Account name
+    - `name`:   `String` - Account name
 
 #### Example
 
@@ -1497,8 +1481,8 @@ None
 #### Returns
 
 - `Object` - Maps account address to metadata.
-    - `manufacturer`: `String` - Manufacturer
-    - `name`: `String` - Account name
+    - `manufacturer`:   `String` - Manufacturer
+    - `name`:   `String` - Account name
 
 #### Example
 
@@ -1647,14 +1631,14 @@ Posts a transaction to the signer without waiting for the signer response.
 #### Parameters
 
 0. `Object` - see [`eth_sendTransaction`](JSONRPC-eth-module#eth_sendtransaction).
-    - `from`: `Address` - 20 Bytes - The address the transaction is send from.
-    - `to`: `Address` - (optional) 20 Bytes - The address the transaction is directed to.
-    - `gas`: `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
-    - `gasPrice`: `Quantity` - (optional) Integer of the gas price used for each paid gas.
-    - `value`: `Quantity` - (optional) Integer of the value sent with this transaction.
-    - `data`: `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
-    - `nonce`: `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
-    - `condition`: `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
+    - `from`:   `Address` - 20 Bytes - The address the transaction is send from.
+    - `to`:   `Address` - (optional) 20 Bytes - The address the transaction is directed to.
+    - `gas`:   `Quantity` - (optional) Integer of the gas provided for the transaction execution. eth_call consumes zero gas, but this parameter may be needed by some executions.
+    - `gasPrice`:   `Quantity` - (optional) Integer of the gas price used for each paid gas.
+    - `value`:   `Quantity` - (optional) Integer of the value sent with this transaction.
+    - `data`:   `Data` - (optional) 4 byte hash of the method signature followed by encoded parameters. For details see [Ethereum Contract ABI](https://github.com/ethereum/wiki/wiki/Ethereum-Contract-ABI).
+    - `nonce`:   `Quantity` - (optional) Integer of a nonce. This allows to overwrite your own pending transactions that use the same nonce.
+    - `condition`:   `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
 
 ```js
 params: [{
@@ -1666,7 +1650,7 @@ params: [{
   "data": "0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675",
   "condition": {
     "block": 354221,
-    "time": "2018-11-05T11:21:06.061Z"
+    "time": "2018-11-06T16:00:12.160Z"
   }
 }]
 ```
@@ -1679,7 +1663,7 @@ params: [{
 
 Request
 ```bash
-curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-11-05T11:21:06.061Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"parity_postTransaction","params":[{"from":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","to":"0xd46e8dd67c5d32be8058bb8eb970870f07244567","gas":"0x76c0","gasPrice":"0x9184e72a000","value":"0x9184e72a","data":"0xd46e8dd67c5d32be8d46e8dd67c5d32be8058bb8eb970870f072445675058bb8eb970870f072445675","condition":{"block":354221,"time":"2018-11-06T16:00:12.160Z"}}],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
@@ -1919,7 +1903,7 @@ None
 
 #### Returns
 
-- `String` - undefined
+- `String` - 
 
 #### Example
 
@@ -1980,7 +1964,7 @@ None
 #### Returns
 
 - `Object` - The status object
-    - `blockGap`: `Array` - (optional) Describes the gap in the blockchain, if there is one: (first, last)
+    - `blockGap`:   `Array` - (optional) Describes the gap in the blockchain, if there is one: (first, last)
 
 #### Example
 
@@ -2013,8 +1997,8 @@ None
 #### Returns
 
 - `Object` - Historic values
-    - `bucketBounds`: `Array` - Array of bound values.
-    - `count`: `Array` - Array of counts.
+    - `bucketBounds`:   `Array` - Array of bound values.
+    - `count`:   `Array` - Array of counts.
 
 #### Example
 
@@ -2101,10 +2085,10 @@ None
 #### Returns
 
 - `Object` - Number of peers
-    - `active`: `Quantity` - Number of active peers.
-    - `connected`: `Quantity` - Number of connected peers.
-    - `max`: `Quantity` - Maximum number of connected peers.
-    - `peers`: `Array` - List of all peers with details.
+    - `active`:   `Quantity` - Number of active peers.
+    - `connected`:   `Quantity` - Number of connected peers.
+    - `max`:   `Quantity` - Maximum number of connected peers.
+    - `peers`:   `Array` - List of all peers with details.
 
 #### Example
 
@@ -2204,26 +2188,26 @@ None
 #### Returns
 
 - `Array` - Transactions ordered by priority
-    - `hash`: `Hash` - 32 Bytes - hash of the transaction.
-    - `nonce`: `Quantity` - The number of transactions made by the sender prior to this one.
-    - `blockHash`: `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
-    - `blockNumber`: `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
-    - `transactionIndex`: `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
-    - `from`: `Address` - 20 Bytes - address of the sender.
-    - `to`: `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
-    - `value`: `Quantity` - Value transferred in Wei.
-    - `gasPrice`: `Quantity` - Gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - Gas provided by the sender.
-    - `input`: `Data` - The data send along with the transaction.
-    - `creates`: `Address` - (optional) Address of a created contract or `null`.
-    - `raw`: `Data` - Raw transaction data.
-    - `publicKey`: `Data` - Public key of the signer.
-    - `chainId`: `Quantity` - The chain id of the transaction, if any.
-    - `standardV`: `Quantity` - The standardized V field of the signature (0 or 1).
-    - `v`: `Quantity` - The V field of the signature.
-    - `r`: `Quantity` - The R field of the signature.
-    - `s`: `Quantity` - The S field of the signature.
-    - `condition`: `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
+    - `hash`:   `Hash` - 32 Bytes - hash of the transaction.
+    - `nonce`:   `Quantity` - The number of transactions made by the sender prior to this one.
+    - `blockHash`:   `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+    - `blockNumber`:   `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
+    - `transactionIndex`:   `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
+    - `from`:   `Address` - 20 Bytes - address of the sender.
+    - `to`:   `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+    - `value`:   `Quantity` - Value transferred in Wei.
+    - `gasPrice`:   `Quantity` - Gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - Gas provided by the sender.
+    - `input`:   `Data` - The data send along with the transaction.
+    - `creates`:   `Address` - (optional) Address of a created contract or `null`.
+    - `raw`:   `Data` - Raw transaction data.
+    - `publicKey`:   `Data` - Public key of the signer.
+    - `chainId`:   `Quantity` - The chain id of the transaction, if any.
+    - `standardV`:   `Quantity` - The standardized V field of the signature (0 or 1).
+    - `v`:   `Quantity` - The V field of the signature.
+    - `r`:   `Quantity` - The R field of the signature.
+    - `s`:   `Quantity` - The S field of the signature.
+    - `condition`:   `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
 
 #### Example
 
@@ -2353,26 +2337,26 @@ params: ["0x2547ea3382099c7c76d33dd468063b32d41016aacb02cbd51ebc14ff5d2b6a43"]
 #### Returns
 
 - `Object` - Removed transaction or `null`.
-    - `hash`: `Hash` - 32 Bytes - hash of the transaction.
-    - `nonce`: `Quantity` - The number of transactions made by the sender prior to this one.
-    - `blockHash`: `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
-    - `blockNumber`: `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
-    - `transactionIndex`: `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
-    - `from`: `Address` - 20 Bytes - address of the sender.
-    - `to`: `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
-    - `value`: `Quantity` - Value transferred in Wei.
-    - `gasPrice`: `Quantity` - Gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - Gas provided by the sender.
-    - `input`: `Data` - The data send along with the transaction.
-    - `creates`: `Address` - (optional) Address of a created contract or `null`.
-    - `raw`: `Data` - Raw transaction data.
-    - `publicKey`: `Data` - Public key of the signer.
-    - `chainId`: `Quantity` - The chain id of the transaction, if any.
-    - `standardV`: `Quantity` - The standardized V field of the signature (0 or 1).
-    - `v`: `Quantity` - The V field of the signature.
-    - `r`: `Quantity` - The R field of the signature.
-    - `s`: `Quantity` - The S field of the signature.
-    - `condition`: `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
+    - `hash`:   `Hash` - 32 Bytes - hash of the transaction.
+    - `nonce`:   `Quantity` - The number of transactions made by the sender prior to this one.
+    - `blockHash`:   `Hash` - 32 Bytes - hash of the block where this transaction was in. `null` when its pending.
+    - `blockNumber`:   `Quantity` or `Tag` - Block number where this transaction was in. `null` when its pending.
+    - `transactionIndex`:   `Quantity` - Integer of the transactions index position in the block. `null` when its pending.
+    - `from`:   `Address` - 20 Bytes - address of the sender.
+    - `to`:   `Address` - 20 Bytes - address of the receiver. `null` when its a contract creation transaction.
+    - `value`:   `Quantity` - Value transferred in Wei.
+    - `gasPrice`:   `Quantity` - Gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - Gas provided by the sender.
+    - `input`:   `Data` - The data send along with the transaction.
+    - `creates`:   `Address` - (optional) Address of a created contract or `null`.
+    - `raw`:   `Data` - Raw transaction data.
+    - `publicKey`:   `Data` - Public key of the signer.
+    - `chainId`:   `Quantity` - The chain id of the transaction, if any.
+    - `standardV`:   `Quantity` - The standardized V field of the signature (0 or 1).
+    - `v`:   `Quantity` - The V field of the signature.
+    - `r`:   `Quantity` - The R field of the signature.
+    - `s`:   `Quantity` - The S field of the signature.
+    - `condition`:   `Object` - (optional) Conditional submission, Block number in `block` or timestamp in `time` or `null`.
 
 #### Example
 
@@ -2430,9 +2414,9 @@ None
 #### Returns
 
 - `Object` - JSON-RPC settings.
-    - `enabled`: `Boolean` - `true` if JSON-RPC is enabled (default).
-    - `interface`: `String` - Interface on which JSON-RPC is running.
-    - `port`: `Quantity` - Port on which JSON-RPC is running.
+    - `enabled`:   `Boolean` - `true` if JSON-RPC is enabled (default).
+    - `interface`:   `String` - Interface on which JSON-RPC is running.
+    - `port`:   `Quantity` - Port on which JSON-RPC is running.
 
 #### Example
 
@@ -2557,8 +2541,8 @@ None
 #### Returns
 
 - `Object` - Availability and Capability.
-    - `availability`: `String` - Availability, either `personal` or `public`.
-    - `capability`: `String` - Capability, either `full` or `light`.
+    - `availability`:   `String` - Availability, either `personal` or `public`.
+    - `capability`:   `String` - Capability, either `full` or `light`.
 
 #### Example
 

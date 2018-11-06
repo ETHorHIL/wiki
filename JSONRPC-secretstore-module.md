@@ -124,9 +124,9 @@ params: [
 #### Returns
 
 - `Object` - All required data to encrypt your document
-    - `common_point`: `Data` - To be used in [document key storing session](Secret-Store#document-key-storing-session) in conjunction with `encrypted_point` to safely store document key in the Secret Store
-    - `encrypted_key`: `Data` - Encryption key to use `secretstore_encrypt`
-    - `encrypted_point`: `Data` - To be used in [document key storing session](Secret-Store#document-key-storing-session) in conjunction with `common_point` to safely store document key in the Secret Store
+    - `common_point`:   `Data` - To be used in [document key storing session](Secret-Store#document-key-storing-session) in conjunction with `encrypted_point` to safely store document key in the Secret Store
+    - `encrypted_key`:   `Data` - Encryption key to use `secretstore_encrypt`
+    - `encrypted_point`:   `Data` - To be used in [document key storing session](Secret-Store#document-key-storing-session) in conjunction with `common_point` to safely store document key in the Secret Store
 
 #### Example
 

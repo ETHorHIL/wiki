@@ -24,9 +24,9 @@ Confirm a request in the signer queue
 
 0. `Quantity` - The request id.
 0. `Object` - Modify the transaction before confirmation.
-    - `gasPrice`: `Quantity` - (optional) Modify the gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - (optional) Gas provided by the sender in Wei.
-    - `condition`: `Object` - (optional) Condition for scheduled transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ timestamp: 1491290692 }`.
+    - `gasPrice`:   `Quantity` - (optional) Modify the gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - (optional) Gas provided by the sender in Wei.
+    - `condition`:   `Object` - (optional) Condition for scheduled transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ timestamp: 1491290692 }`.
 0. `String` - The account password
 
 ```js
@@ -105,9 +105,9 @@ Confirm specific request with rolling token.
 
 0. `Quantity` - The request id.
 0. `Object` - Modify the transaction before confirmation.
-    - `gasPrice`: `Quantity` - (optional) Modify the gas price provided by the sender in Wei.
-    - `gas`: `Quantity` - (optional) Gas provided by the sender in Wei.
-    - `condition`: `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
+    - `gasPrice`:   `Quantity` - (optional) Modify the gas price provided by the sender in Wei.
+    - `gas`:   `Quantity` - (optional) Gas provided by the sender in Wei.
+    - `condition`:   `Object` - (optional) Conditional submission of the transaction. Can be either an integer block number `{ block: 1 }` or UTC timestamp (in seconds) `{ time: 1491290692 }` or `null`.
 0. `String` - Password (initially) or a token returned by the previous call.
 
 ```js
@@ -121,8 +121,8 @@ params: [
 #### Returns
 
 - `Object` - Status.
-    - `result`: `Object` - The status of the confirmation, depending on the request type.
-    - `token`: `String` - Token used to authenticate the next request.
+    - `result`:   `Object` - The status of the confirmation, depending on the request type.
+    - `token`:   `String` - Token used to authenticate the next request.
 
 #### Example
 
