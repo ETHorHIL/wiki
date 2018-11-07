@@ -225,11 +225,11 @@ EIP-191 compliant signing, allows signing of different data formats depending on
     - `EIP712`:   `Object` - EIP-712 compliant data structure, if version specified is `0x01`
         - `primaryType`:   `String` - name of the struct defined in `types` that is the same type as `message`
         - `domain`:   `Object` - EIP712Domain
-        - `name`:   `String` - User readable name of signing domain, i.e. the name of the Dapp or the protocol
-        - `verifyingContract`:   `Address` - Address of the contract that verifies the signed message
-        - `chainId`:   `Integer` - chain id this signature is valid for to prevent chain replay attacks
-        - `version`:   `Integer` - The current major version of the signing domain. Signatures from different versions are not compatible.
-        - `salt`:   `Data` - Should be used as a last resort domain seperator
+            - `name`:   `String` - User readable name of signing domain, i.e. the name of the Dapp or the protocol
+            - `verifyingContract`:   `Address` - Address of the contract that verifies the signed message
+            - `chainId`:   `Integer` - chain id this signature is valid for to prevent chain replay attacks
+            - `version`:   `Integer` - The current major version of the signing domain. Signatures from different versions are not compatible.
+            - `salt`:   `Data` - Should be used as a last resort domain seperator
         - `message`:   `Object` - Structured message to be signed
         - `types`:   `Object` - type definitions for the `EIP712Domain` and the 'primaryType' as well as it's dependent types
     - `Data`:   `Data` - hashed message to sign, if version specified is `0x45`
@@ -241,8 +241,11 @@ EIP-191 compliant signing, allows signing of different data formats depending on
 
 ```js
 params: [
-  "0x00 for pre-signed transactions, 0x01 for structured data(EIP712), 0x45 for personal messages",
-  "`PresignedTransaction` or `EIP712` or `Data`",
+  "0x00",
+  {
+    "validator": "0xb60e8dd61c5d32be8058bb8eb970870f07233155",
+    "data": "0xe7225f986f192f859a9bf84e34b2b7001dfa11aeb5c7164f81a2bee0d79943e2587be1faa11502eba0f803bb0ee071a082b6fe40fba025f3309263a1eef52c711c"
+  },
   "0xb60e8dd61c5d32be8058bb8eb970870f07233155",
   "password"
 ]
@@ -256,7 +259,7 @@ params: [
 
 Request
 ```bash
-curl --data '{"method":"personal_sign191","params":["0x00 for pre-signed transactions, 0x01 for structured data(EIP712), 0x45 for personal messages","`PresignedTransaction` or `EIP712` or `Data`","0xb60e8dd61c5d32be8058bb8eb970870f07233155","password"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
+curl --data '{"method":"personal_sign191","params":["0x00",{"validator":"0xb60e8dd61c5d32be8058bb8eb970870f07233155","data":"0xe7225f986f192f859a9bf84e34b2b7001dfa11aeb5c7164f81a2bee0d79943e2587be1faa11502eba0f803bb0ee071a082b6fe40fba025f3309263a1eef52c711c"},"0xb60e8dd61c5d32be8058bb8eb970870f07233155","password"],"id":1,"jsonrpc":"2.0"}' -H "Content-Type: application/json" -X POST localhost:8545
 ```
 
 Response
