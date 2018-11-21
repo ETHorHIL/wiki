@@ -80,7 +80,7 @@ A JSON file which specifies rules of a blockchain, some fields are optional whic
   Optional:
   + `"accountStartNonce"` in the past this was used for transaction replay protection
   + `"chainID"` chain identifier, was introduced in EIP-155 to prevent replay attacks between the main ETH and ETC chains, which both have a networkID of 1. ChainID is additional way to tell chains apart. Subsequent to EIP-155, ETH has a chainID of 1, while ETC has a chainID of 61 (even though they still have the same networkID of 1). networkID and chainID are  required for the chain to operate in general - e.g. it's required when signing transactions, meaning transactions signed on the ETH network end up with a different hash than those signed on ETC. Before EIP-155, signed transactions on each network would look the same, and could be replayed. See [here](https://github.com/ethereum/EIPs/blob/master/EIPS/eip-155.md) for more information.Default value is equal to `networkID`.
-  + `"subprotocolName"` by default its the `eth` subprotocol. All subprotocols names in one place can be found [here]( https://github.com/ethereum/devp2p/issues/47).
+  + `"subprotocolName"` by default its the `eth` subprotocol. All subprotocol names in one place can be found [here]( https://github.com/ethereum/devp2p/issues/47).
   + `"forkBlock"` block number of the latest fork that should be checked by the [Automatic Updating](https://wiki.parity.io/Automatic-Updating) feature.
   + `"forkCanonHash"` hash of the canonical block at `forkBlock`
   + `"bombDefuseTransition"` block number at which the difficulty bomb (epsilon in Yellow Paper Eqs. 39, 44) is removed from the difficulty evolution
