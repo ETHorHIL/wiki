@@ -75,7 +75,7 @@ A JSON file which specifies rules of a blockchain, some fields are optional whic
 + **`"params"`** contains general chain parameters:
   + `"networkID"` DevP2P supports multiple networks, and ID is used to uniquely identify each one which is used to connect to correct peers and to prevent transaction replay across chains. See [here](https://ethereum.stackexchange.com/questions/17051/how-to-select-a-network-id-or-is-there-a-list-of-network-ids/17101#17101) for network IDs that are not available anymore.
   + `"maximumExtraDataSize"` integer specifying the maximum size in bytes of the extra_data field of the header. This must be 32 bytes or fewer as per the Ethereum Yellow Paper (see extraData under 4.3). It is an optional value, used by some Ethereum mining pools to log their blocks. The current value for Ethereum and Kovan is "32".
-  + `"minGasLimit"` the minimum gas limit, should not be smaller than the intrinsic gas used by a transaction which is 21000. Most chains like Ethereum and Kovan, however use 5000 as the initial gas limit, which is too low to send any transactions. This originatied in a deliberate process called "thawing" from the early Ethereum days, where the gas limit started out very low, and was gradually increased over time as people became more confident that the network was functioning correctly.
+  + `"minGasLimit"` the minimum gas limit. Most chains like Ethereum and Kovan use 5000 (less than the minimum 21000 needed to perform a transaction) in a deliberate process called "thawing", more info about it [here](https://ethereum.gitbooks.io/frontier-guide/content/frontier.html/).
   
   Optional:
   + `"accountStartNonce"` in the past this was used for transaction replay protection
